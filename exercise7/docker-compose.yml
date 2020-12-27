@@ -1,0 +1,37 @@
+version: '3.5'  
+
+services:
+  frontend:
+    container_name: frontend-ml
+    build:
+      context: ./frontend 
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+
+  backend:
+    container_name: backend-ml
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    depends_on:
+      - training
+    volumes:
+      - model:/src/model
+
+  training:
+    container_name: training-ml
+    build:
+      context: ./training
+      dockerfile: Dockerfile
+    volumes:
+      - model:/src/model
+      - imgs:/src/imgs
+      - data:/src/data
+
+volumes:
+  model:
+  imgs:
+  data:

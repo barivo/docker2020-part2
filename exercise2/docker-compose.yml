@@ -1,0 +1,16 @@
+2.2
+
+# whoami/docker-compose-yml
+version: '3.5'  
+
+services: 
+    whoami: 
+      image: jwilder/whoami 
+      ports: 
+        - 80:8000 
+
+# run with
+# docker-compose up
+# curl localhost:80
+
+

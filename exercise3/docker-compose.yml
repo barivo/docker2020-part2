@@ -1,0 +1,32 @@
+version: '3.5'  
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:5000"
+
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+        - "./logs.txt:/mydir/backend-example-docker/logs.txt"
+
+# run with
+# docker-compose up -d
+#
+# note that we must have a "logs.txt" file in the root directory
+# and that log entries will only be written when we
+# visit http://localhost:8000/
+#
+# >> cat logs.txt
+#
+# 11/9/2020, 4:57:16 PM: Connection received in root
+# 11/9/2020, 4:57:23 PM: Connection received in root
+
+

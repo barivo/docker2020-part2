@@ -1,0 +1,14 @@
+# add the following to docker-compose after(?) creating a directory
+# note that the period before the forward-slash in "./database" is necessary
+
+  db:
+    container_name: postgres-26 
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - ./database:/var/lib/postgresql/data
+
+
+
